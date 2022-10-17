@@ -11,7 +11,7 @@ on:
     - cron: "43 2 * * 1"
 
 env:
-  DOCKER_IMAGE: m1k1o/neko
+  DOCKER_IMAGE: goldenlumia/neko
 
 jobs:
   build-base:
@@ -19,7 +19,7 @@ jobs:
     #
     # do not run on forks
     #
-    if: github.repository_owner == 'm1k1o'
+    if: github.repository_owner == 'goldenlumia'
     steps:
       - name: Check Out Repo
         uses: actions/checkout@v2
@@ -44,7 +44,7 @@ jobs:
     #
     # do not run on forks
     #
-    if: github.repository_owner == 'm1k1o'
+    if: github.repository_owner == 'goldenlumia'
     needs: [ build-base ]
     strategy:
       # Will build all images even if some fail.
