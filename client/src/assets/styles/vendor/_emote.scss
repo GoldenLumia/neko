@@ -5,6 +5,16 @@
   background-repeat: no-repeat;
   background-position: center center;
 
+  &.girlskissing { background-image: url('../images/emote/girlskissing.svg'); }
+  &.italy { background-image: url('../images/emote/italy.svg'); }
+  &.moai { background-image: url('../images/emote/moai.svg'); }
+  &.nerd { background-image: url('../images/emote/nerd.svg'); }
+  &.purplepickle { background-image: url('../images/emote/purplepickle.svg'); }
+  &.skull { background-image: url('../images/emote/skull.svg'); }
+  &.thumbsdown { background-image: url('../images/emote/thumbsdown.svg'); }
+  &.transpride { background-image: url('../images/emote/transpride.svg'); }
+  &.weary { background-image: url('../images/emote/weary.svg'); }
+
   &.anger { background-image: url('../images/emote/1f4a2.svg'); }
   &.bomb { background-image: url('../images/emote/1f4a3.svg'); }
   &.sleep { background-image: url('../images/emote/1f4a4.svg'); }

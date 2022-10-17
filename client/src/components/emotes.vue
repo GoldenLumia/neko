@@ -103,6 +103,15 @@
 
     get emotes() {
       return [
+        'girlskissing',
+        'italy',
+        'moai',
+        'nerd',
+        'purplepickle',
+        'skull',
+        'thumbsdown',
+        'transpride',
+        'weary',
         'anger',
         'bomb',
         'sleep',
