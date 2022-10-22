@@ -112,6 +112,8 @@
         'thumbsdown',
         'transpride',
         'weary',
+        'pig',
+        'bighog',
         'anger',
         'bomb',
         'sleep',
