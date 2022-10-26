@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=m1k1o/neko:base
+ARG BASE_IMAGE=goldenlumia/neko:base
 FROM $BASE_IMAGE
 
 ARG VIVALDI_VERSION="5.3.2679.34-1"

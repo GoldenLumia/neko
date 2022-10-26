@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=m1k1o/neko:base
+ARG BASE_IMAGE=goldenlumia/neko:base
 FROM $BASE_IMAGE
 
 ARG SRC_URL="https://download.opera.com/download/get/?id=58545&location=415&nothanks=yes&sub=marine&utm_tryagain=yes"
