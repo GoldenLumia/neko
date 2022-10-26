@@ -1,3 +1,5 @@
+<div align="center">This fork simply adds more emojis at this time.</div> 
+<br>
 <div align="center">
   <a href="https://github.com/m1k1o/neko" title="Neko's Github repository.">
     <img src="https://raw.githubusercontent.com/m1k1o/neko/master/docs/_media/logo.png" width="400" height="auto"/>
@@ -27,8 +29,6 @@
   </p>
   <img src="https://i.imgur.com/ZSzbQr7.gif" width="650" height="auto"/>
 </div>
-
-This fork simply adds more emojis at this time. 
 
 # n.eko
 
