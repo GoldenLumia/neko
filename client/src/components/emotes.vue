@@ -114,6 +114,8 @@
         'weary',
         'pig',
         'bighog',
+        'wow',
+        'waltuh',
         'anger',
         'bomb',
         'sleep',
