@@ -78,8 +78,10 @@ services:
 ```
 
 - When using mux, `NEKO_EPR` is ignored.
+- Mux accepts only one port, not a range.
 - You only need to expose maximum two ports for WebRTC on your router/firewall and have many users connected.
 - It can even be the same port number, so e.g. `NEKO_TCPMUX: 8081` and `NEKO_UDPMUX: 8081`.
+- The same port must be exposed from docker container, you can't map them to different ports. So `8082:8082` is OK, but `"5454:8082` will not work.
 - You can use them alone (either TCP or UDP) when needed.
   - UDP is generally better for latency. But some networks block UDP so it is good to have TCP available as fallback.
 - Still, using `NEKO_ICELITE=true` is recommended.
@@ -89,6 +91,31 @@ services:
 - For Firefox, copy [this](https://github.com/m1k1o/neko/blob/master/.docker/firefox/policies.json) file, modify and mount it as: ` -v '${PWD}/policies.json:/usr/lib/firefox/distribution/policies.json'`
 - For Chromium, copy [this](https://github.com/m1k1o/neko/blob/master/.docker/chromium/policies.json) file, modify and mount it as: ` -v '${PWD}/policies.json:/etc/chromium/policies/managed/policies.json'`
 - For others, see where existing `policies.json` is placed in their `Dockerfile`.
+
+#### Allow file uploading & downloading
+- From security perespective, browser is not enabled to access local file data.
+- If you want to enable this, you need to modify following policies:
+```json
+  "DownloadRestrictions": 0,
+  "AllowFileSelectionDialogs": true,
+  "URLAllowlist": [
+      "file:///home/neko/Downloads"
+  ],
+```
+
+### Want to preserve browser data between restarts?
+- You need to mount browser profile as volume.
+- For Firefox, that is this `/home/neko/.mozilla/firefox/profile.default` folder, mount it as: ` -v '${PWD}/data:/home/neko/.mozilla/firefox/profile.default'`
+- For Chromium, that is this `/home/neko/.config/chromium` folder, mount it as: ` -v '${PWD}/data:/home/neko/.config/chromium'`
+- For other chromium based browsers, see in `supervisord.conf` folder that is specified in `--user-data-dir`.
+
+#### Allow persistent data in policies
+- From security perespective, browser is set up to forget all cookies and brwosing history when its closed.
+- If you want to enable this, you need to modify following policies:
+```json
+  "DefaultCookiesSetting": 1,
+  "RestoreOnStartup": 1,
+```
 
 ### Want to use VPN for your n.eko browsing?
 - Check this out: https://github.com/m1k1o/neko-vpn

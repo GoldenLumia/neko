@@ -2,17 +2,22 @@
 
 ## master branch
 
+## [n.eko v2.7](https://github.com/m1k1o/neko/releases/tag/v2.7)
+
 ### New Features
 - Added `m1k1o/neko:vivaldi` tag (thanks @Xeddius).
 - Added `m1k1o/neko:opera` tag (thanks @prophetofxenu).
 - Added `NEKO_PATH_PREFIX`.
 - Added screenshot function `/screenshot.jpg?pwd=<admin>`, works only for unlocked rooms.
 - Added emoji support (by @yesBad).
+- Added file transfer (by @prophetofxenu).
 
 ### Misc
 - Server: Split `remote` to `desktop` and `capture`.
 - Server: Refactored `xorg` - added `xevent` and clipboard is handled as event (no looped polling anymore).
 - Introduced `NEKO_AUDIO_CODEC=` and `NEKO_VIDEO_CODEC=` as a new way of setting codecs.
+- Added CORS.
+- Opera versions are not hardcoded in Dockerfile anymore but automatically are fetch latest.
 
 ## [n.eko v2.6](https://github.com/m1k1o/neko/releases/tag/v2.6)
 
