@@ -3,7 +3,7 @@
     <div class="window">
       <div class="logo">
         <img src="@/assets/images/logo.svg" alt="n.eko" />
-        <span><b>n</b>.eko</span>
+        <span><b>w</b>.instonoverwatch</span>
       </div>
       <div class="message">
         <span>{{ $t('unsupported') }}</span>
