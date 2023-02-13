@@ -184,6 +184,7 @@
         'amog',
         'amoog',
         'clueless',
+        'KEKW',
       ].filter((v) => !this.recent.includes(v))
     }
 
