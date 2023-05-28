@@ -54,7 +54,7 @@
     },
     "ExtensionSettings": {
       "*": {
-        "installation_mode": "blocked"
+        "installation_mode": "allowed"
       },
       "sponsorBlocker@ajay.app": {
         "install_url": "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi",
