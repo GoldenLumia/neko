@@ -25,6 +25,13 @@
         "Favicon": "https://www.google.com/favicon.ico",
         "Folder": "Pages",
         "Placement": "toolbar"
+      },
+       {
+        "Title": "Twitch",
+        "URL": "https://www.twitch.tv",
+        "Favicon": "https://www.twitch.tv/favicon.ico",
+        "Folder": "Pages",
+        "Placement": "toolbar"
       }
     ],
     "CaptivePortal": false,
