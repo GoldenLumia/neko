@@ -21,11 +21,14 @@
           @mouseup.stop.prevent="onMouseUp"
           @mouseenter.stop.prevent="onMouseEnter"
           @mouseleave.stop.prevent="onMouseLeave"
+          @touchmove.stop.prevent="onTouchHandler"
+          @touchstart.stop.prevent="onTouchHandler"
+          @touchend.stop.prevent="onTouchHandler"
         />
-        <div v-if="!playing && playable" class="player-overlay" @click.stop.prevent="toggle">
+        <div v-if="!playing && playable" class="player-overlay" @click.stop.prevent="playAndUnmute">
           <i class="fas fa-play-circle" />
         </div>
-        <div v-if="mutedOverlay && muted" class="player-overlay" @click.stop.prevent="unmute">
+        <div v-else-if="mutedOverlay && muted" class="player-overlay" @click.stop.prevent="unmute">
           <i class="fas fa-volume-up" />
         </div>
         <div ref="aspect" class="player-aspect" />
@@ -33,7 +36,7 @@
       <ul v-if="!fullscreen && !hideControls" class="video-menu top">
         <li><i @click.stop.prevent="requestFullscreen" class="fas fa-expand"></i></li>
         <li v-if="admin"><i @click.stop.prevent="openResolution" class="fas fa-desktop"></i></li>
-        <li class="request-control">
+        <li v-if="!implicitHosting" :class="extraControls || 'extra-control'">
           <i
             :class="[hosted && !hosting ? 'disabled' : '', !hosted && !hosting ? 'faded' : '', 'fas', 'fa-keyboard']"
             @click.stop.prevent="toggleControl"
@@ -106,12 +109,12 @@
             }
           }
 
-          &.request-control {
+          /* usually extra controls are only shown on mobile */
+          &.extra-control {
             display: none;
           }
-
           @media (max-width: 768px) {
-            &.request-control {
+            &.extra-control {
               display: inline-block;
             }
           }
@@ -223,13 +226,15 @@
     @Ref('resolution') readonly _resolution!: Resolution
     @Ref('clipboard') readonly _clipboard!: Clipboard
 
+    // all controls are hidden (e.g. for cast mode)
     @Prop(Boolean) readonly hideControls!: boolean
+    // extra controls are shown (e.g. for embed mode)
+    @Prop(Boolean) readonly extraControls!: boolean
 
     private keyboard = GuacamoleKeyboard()
     private observer = new ResizeObserver(this.onResize.bind(this))
     private focused = false
     private fullscreen = false
-    private startsMuted = true
     private mutedOverlay = true
 
     get admin() {
@@ -361,7 +366,6 @@
     onMutedChanged(muted: boolean) {
       if (this._video && this._video.muted != muted) {
         this._video.muted = muted
-        this.startsMuted = muted
 
         if (!muted) {
           this.mutedOverlay = false
@@ -384,9 +388,29 @@
     }
 
     @Watch('playing')
-    onPlayingChanged(playing: boolean) {
+    async onPlayingChanged(playing: boolean) {
       if (this._video && this._video.paused && playing) {
-        this.play()
+        // if autoplay is disabled, play() will throw an error
+        // and we need to properly save the state otherwise we
+        // would be thinking we're playing when we're not
+        try {
+          await this._video.play()
+        } catch (err: any) {
+          if (!this._video.muted) {
+            // video.play() can fail if audio is set due restrictive
+            // browsers autoplay policy -> retry with muted audio
+            try {
+              this.$accessor.video.setMuted(true)
+              this._video.muted = true
+              await this._video.play()
+            } catch (err: any) {
+              // if it still fails, we're not playing anything
+              this.$accessor.video.pause()
+            }
+          } else {
+            this.$accessor.video.pause()
+          }
+        }
       }
 
       if (this._video && !this._video.paused && !playing) {
@@ -424,11 +448,6 @@
       this._video.addEventListener('canplaythrough', () => {
         this.$accessor.video.setPlayable(true)
         if (this.autoplay) {
-          // start as muted due to restrictive browsers autoplay policy
-          if (this.startsMuted && (!document.hasFocus() || !this.$accessor.active)) {
-            this.$accessor.video.setMuted(true)
-          }
-
           this.$nextTick(() => {
             this.$accessor.video.play()
           })
@@ -560,6 +579,11 @@
       }
     }
 
+    playAndUnmute() {
+      this.$accessor.video.play()
+      this.$accessor.video.setMuted(false)
+    }
+
     unmute() {
       this.$accessor.video.setMuted(false)
     }
@@ -665,6 +689,35 @@
           this.wheelThrottle = false
         }, 100)
       }
+    }
+
+    onTouchHandler(e: TouchEvent) {
+      let first = e.changedTouches[0]
+      let type = ''
+      switch (e.type) {
+        case 'touchstart':
+          type = 'mousedown'
+          break
+        case 'touchmove':
+          type = 'mousemove'
+          break
+        case 'touchend':
+          type = 'mouseup'
+          break
+        default:
+          return
+      }
+
+      const simulatedEvent = new MouseEvent(type, {
+        bubbles: true,
+        cancelable: true,
+        view: window,
+        screenX: first.screenX,
+        screenY: first.screenY,
+        clientX: first.clientX,
+        clientY: first.clientY,
+      })
+      first.target.dispatchEvent(simulatedEvent)
     }
 
     onMouseDown(e: MouseEvent) {
