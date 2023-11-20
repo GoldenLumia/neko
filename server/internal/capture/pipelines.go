@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"m1k1o/neko/internal/capture/gst"
+	"m1k1o/neko/internal/config"
 	"m1k1o/neko/internal/types/codec"
 )
 
@@ -52,7 +53,7 @@ func NewBroadcastPipeline(device string, display string, pipelineSrc string, url
 	return pipelineStr, nil
 }
 
-func NewVideoPipeline(rtpCodec codec.RTPCodec, display string, pipelineSrc string, fps int16, bitrate uint, hwenc string) (string, error) {
+func NewVideoPipeline(rtpCodec codec.RTPCodec, display string, pipelineSrc string, fps int16, bitrate uint, hwenc config.HwEnc) (string, error) {
 	pipelineStr := " ! appsink name=appsinkvideo"
 
 	// if using custom pipeline
@@ -68,7 +69,7 @@ func NewVideoPipeline(rtpCodec codec.RTPCodec, display string, pipelineSrc strin
 
 	switch rtpCodec.Name {
 	case codec.VP8().Name:
-		if hwenc == "VAAPI" {
+		if hwenc == config.HwEncVAAPI {
 			if err := gst.CheckPlugins([]string{"ximagesrc", "vaapi"}); err != nil {
 				return "", err
 			}
@@ -138,35 +139,40 @@ func NewVideoPipeline(rtpCodec codec.RTPCodec, display string, pipelineSrc strin
 			return "", err
 		}
 
-		if hwenc == "VAAPI" {
+		vbvbuf := uint(1000)
+		if bitrate > 1000 {
+			vbvbuf = bitrate
+		}
+
+		if hwenc == config.HwEncVAAPI {
 			if err := gst.CheckPlugins([]string{"vaapi"}); err != nil {
 				return "", err
 			}
 
-			pipelineStr = fmt.Sprintf(videoSrc+"video/x-raw,format=NV12 ! vaapih264enc rate-control=vbr bitrate=%d keyframe-period=180 quality-level=7 ! video/x-h264,stream-format=byte-stream"+pipelineStr, display, fps, bitrate)
+			pipelineStr = fmt.Sprintf(videoSrc+"video/x-raw,format=NV12 ! vaapih264enc rate-control=vbr bitrate=%d keyframe-period=180 quality-level=7 ! video/x-h264,stream-format=byte-stream,profile=constrained-baseline"+pipelineStr, display, fps, bitrate)
+		} else if hwenc == config.HwEncNVENC {
+			if err := gst.CheckPlugins([]string{"nvcodec"}); err != nil {
+				return "", err
+			}
 
+			pipelineStr = fmt.Sprintf(videoSrc+"video/x-raw,format=NV12 ! nvh264enc name=encoder preset=2 gop-size=25 spatial-aq=true temporal-aq=true bitrate=%d vbv-buffer-size=%d rc-mode=6 ! h264parse config-interval=-1 ! video/x-h264,stream-format=byte-stream,profile=constrained-baseline"+pipelineStr, display, fps, bitrate, vbvbuf)
 		} else {
 			// https://gstreamer.freedesktop.org/documentation/openh264/openh264enc.html?gi-language=c#openh264enc
 			// gstreamer1.0-plugins-bad
 			// openh264enc multi-thread=4 complexity=high bitrate=3072000 max-bitrate=4096000
 			if err := gst.CheckPlugins([]string{"openh264"}); err == nil {
-				pipelineStr = fmt.Sprintf(videoSrc+"openh264enc multi-thread=4 complexity=high bitrate=%d max-bitrate=%d ! video/x-h264,stream-format=byte-stream"+pipelineStr, display, fps, bitrate*1000, (bitrate+1024)*1000)
+				pipelineStr = fmt.Sprintf(videoSrc+"openh264enc multi-thread=4 complexity=high bitrate=%d max-bitrate=%d ! video/x-h264,stream-format=byte-stream,profile=constrained-baseline"+pipelineStr, display, fps, bitrate*1000, (bitrate+1024)*1000)
 				break
 			}
 
 			// https://gstreamer.freedesktop.org/documentation/x264/index.html?gi-language=c
 			// gstreamer1.0-plugins-ugly
-			// video/x-raw,format=I420 ! x264enc bframes=0 key-int-max=60 byte-stream=true tune=zerolatency speed-preset=veryfast ! video/x-h264,stream-format=byte-stream
+			// video/x-raw,format=I420 ! x264enc bframes=0 key-int-max=60 byte-stream=true tune=zerolatency speed-preset=veryfast ! video/x-h264,stream-format=byte-stream,profile=constrained-baseline
 			if err := gst.CheckPlugins([]string{"x264"}); err != nil {
 				return "", err
 			}
 
-			vbvbuf := uint(1000)
-			if bitrate > 1000 {
-				vbvbuf = bitrate
-			}
-
-			pipelineStr = fmt.Sprintf(videoSrc+"video/x-raw,format=NV12 ! x264enc threads=4 bitrate=%d key-int-max=60 vbv-buf-capacity=%d byte-stream=true tune=zerolatency speed-preset=veryfast ! video/x-h264,stream-format=byte-stream"+pipelineStr, display, fps, bitrate, vbvbuf)
+			pipelineStr = fmt.Sprintf(videoSrc+"video/x-raw,format=NV12 ! x264enc threads=4 bitrate=%d key-int-max=60 vbv-buf-capacity=%d byte-stream=true tune=zerolatency speed-preset=veryfast ! video/x-h264,stream-format=byte-stream,profile=constrained-baseline"+pipelineStr, display, fps, bitrate, vbvbuf)
 		}
 	default:
 		return "", fmt.Errorf("unknown codec %s", rtpCodec.Name)

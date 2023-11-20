@@ -1,4 +1,4 @@
-name: "amd64 images"
+name: "nvidia gpu supported images"
 
 on:
   push:
@@ -7,9 +7,9 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: goldenlumia/neko
-  TAG_PREFIX: ""
-  BASE_DOCKERFILE: Dockerfile
+  IMAGE_NAME: m1k1o/neko
+  TAG_PREFIX: nvidia-
+  BASE_DOCKERFILE: Dockerfile.nvidia
   PLATFORMS: linux/amd64
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
     #
     # do not run on forks
     #
-    if: github.repository_owner == 'goldenlumia'
+    if: github.repository_owner == 'm1k1o'
     steps:
       -
         name: Checkout
@@ -63,27 +63,25 @@ jobs:
     #
     # do not run on forks
     #
-    if: github.repository_owner == 'goldenlumia'
+    if: github.repository_owner == 'm1k1o'
     needs: [ build-base ]
     strategy:
       # Will build all images even if some fail.
       matrix:
         include:
           - tag: firefox
-          - tag: chromium
-          - tag: google-chrome
-          - tag: ungoogled-chromium
-          - tag: microsoft-edge
+            dockerfile: Dockerfile.nvidia
           - tag: brave
-          - tag: vivaldi
-          - tag: opera
-          - tag: tor-browser
-          - tag: remmina
-          - tag: vlc
-          - tag: xfce
-          - tag: kde
+            dockerfile: Dockerfile.nvidia
+          - tag: chromium
+            dockerfile: Dockerfile.nvidia
+          - tag: google-chrome
+            dockerfile: Dockerfile.nvidia
+          - tag: microsoft-edge
+            dockerfile: Dockerfile.nvidia
     env:
       TAG_NAME: ${{ matrix.tag }}
+      DOCKERFILE: ${{ matrix.dockerfile }}
     steps:
       -
         name: Checkout
@@ -117,6 +115,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .docker/${{ env.TAG_NAME }}
+          file: .docker/${{ env.TAG_NAME }}/${{ env.DOCKERFILE }}
           platforms: ${{ env.PLATFORMS }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
