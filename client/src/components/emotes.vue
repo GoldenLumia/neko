@@ -104,6 +104,7 @@
     get emotes() {
       return [
         'girlskissing',
+        'menkissing',
         'italy',
         'moai',
         'nerd',
