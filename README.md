@@ -2,9 +2,6 @@
   <a href="https://hub.docker.com/u/goldenlumia/neko">
         <img src="https://img.shields.io/docker/pulls/goldenlumia/neko" alt="pulls">
   </a>
-   <a href="https://github.com/goldenlumia/neko/actions">
-        <img src="https://github.com/goldenlumia/neko/actions/workflows/build.yml/badge.svg" alt="build">
-   </a>
 </div>
 <div align="center">
   <a href="https://github.com/m1k1o/neko" title="Neko's Github repository.">
