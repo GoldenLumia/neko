@@ -7,11 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-<<<<<<< HEAD
   IMAGE_NAME: goldenlumia/neko
-=======
-  IMAGE_NAME: m1k1o/neko
->>>>>>> e26e4d2004b2c68afda93f9761e41894b5b48657
   TAG_PREFIX: intel-
   BASE_DOCKERFILE: Dockerfile.intel
   PLATFORMS: linux/amd64
@@ -22,11 +18,7 @@ jobs:
     #
     # do not run on forks
     #
-<<<<<<< HEAD
     if: github.repository_owner == 'goldenlumia'
-=======
-    if: github.repository_owner == 'm1k1o'
->>>>>>> e26e4d2004b2c68afda93f9761e41894b5b48657
     steps:
       -
         name: Checkout
@@ -71,11 +63,7 @@ jobs:
     #
     # do not run on forks
     #
-<<<<<<< HEAD
     if: github.repository_owner == 'goldenlumia'
-=======
-    if: github.repository_owner == 'm1k1o'
->>>>>>> e26e4d2004b2c68afda93f9761e41894b5b48657
     needs: [ build-base ]
     strategy:
       # Will build all images even if some fail.

@@ -5,11 +5,6 @@
 ### New Features
 - Added nvidia support for firefox.
 - Added `?lang=<lang>` parameter to the URL, which will set the language of the interface (by @mbattista).
-<<<<<<< HEAD
-
-### Misc
-- Git commit and tag are now included in the build when creating a docker image.
-=======
 - Added `?show_side=1` and `?mute_chat=1` parameter to the URL, for chat mute and show side (by @mbattista).
 
 ### Bugs
@@ -23,7 +18,6 @@
 - Remove any temporary files associated with a Form after file upload, that would be otherwise never removed.
 - Add check for volume parameter in URL before setting volume (by @FapFapDragon).
 - Add glib main loop to capture manager [#383](https://github.com/m1k1o/neko/pull/383) (by @tt2468).
->>>>>>> e26e4d2004b2c68afda93f9761e41894b5b48657
 
 ## [n.eko v2.8.0](https://github.com/m1k1o/neko/releases/tag/v2.8.0)
 

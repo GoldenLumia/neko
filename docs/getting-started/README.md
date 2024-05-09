@@ -217,11 +217,7 @@ NEKO_ICESERVERS: '[{"urls": ["turn:<MY-COTURN-SERVER>:443?transport=udp", "turn:
 
 ### Nvidia GPU acceleration
 
-<<<<<<< HEAD
-You need to have [nvidia-docker](https://github.com/NVIDIA/nvidia-docker) installed, start the container with `--gpus all` flag and use images built for nvidia (see above).
-=======
 You need to have [NVIDIA Container Toolkit](https://github.com/NVIDIA/nvidia-container-toolkit) installed, start the container with `--gpus all` flag and use images built for nvidia (see above).
->>>>>>> e26e4d2004b2c68afda93f9761e41894b5b48657
 
 ```bash
 docker run -d --gpus all \
@@ -302,11 +298,8 @@ NEKO_BROADCAST_PIPELINE: "flvmux name=mux ! rtmpsink location={url} pulsesrc dev
   - Adding `?embed=1` will hide most additional components and show only video.
   - Adding `?volume=<0-1>` will set volume to given value.
   - Adding `?lang=<language>` will set language to given value.
-<<<<<<< HEAD
-=======
   - Adding `?show_side=1` will show the sidebar on startup.
   - Adding `?mute_chat=1` will mute the chat on startup.
->>>>>>> e26e4d2004b2c68afda93f9761e41894b5b48657
   - e.g. `http(s)://<URL:Port>/?pwd=neko&usr=guest&cast=1`
 
 ### Screen size

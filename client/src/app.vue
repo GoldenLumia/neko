@@ -204,13 +204,9 @@
 
     @Watch('volume', { immediate: true })
     onVolume(volume: number) {
-<<<<<<< HEAD
-      this.$accessor.video.setVolume(volume)
-=======
       if (new URL(location.href).searchParams.has('volume')) {
         this.$accessor.video.setVolume(volume)
       }
->>>>>>> e26e4d2004b2c68afda93f9761e41894b5b48657
     }
 
     @Watch('hideControls', { immediate: true })

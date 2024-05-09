@@ -82,8 +82,6 @@
       if (default_lang && this.langs.includes(default_lang)) {
         this.$i18n.locale = default_lang
       }
-<<<<<<< HEAD
-=======
       const show_side = new URL(location.href).searchParams.get('show_side')
       if (show_side !== null) {
         this.$accessor.client.setSide(show_side === '1')
@@ -92,7 +90,6 @@
       if (mute_chat !== null) {
         this.$accessor.settings.setSound(mute_chat !== '1')
       }
->>>>>>> e26e4d2004b2c68afda93f9761e41894b5b48657
     }
   }
 </script>
