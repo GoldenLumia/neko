@@ -6,6 +6,7 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 
+	"m1k1o/neko/internal/capture/gst"
 	"m1k1o/neko/internal/config"
 	"m1k1o/neko/internal/types"
 )
@@ -53,6 +54,10 @@ func (manager *CaptureManagerCtx) Start() {
 		}
 	}
 
+<<<<<<< HEAD
+=======
+	go gst.RunMainLoop()
+>>>>>>> e26e4d2004b2c68afda93f9761e41894b5b48657
 	go func() {
 		for {
 			before, ok := <-manager.desktop.GetScreenSizeChangeChannel()
@@ -99,6 +104,8 @@ func (manager *CaptureManagerCtx) Shutdown() error {
 
 	manager.audio.shutdown()
 	manager.video.shutdown()
+
+	gst.QuitMainLoop()
 
 	return nil
 }

@@ -13,6 +13,7 @@
           class="overlay"
           tabindex="0"
           data-gramm="false"
+          :style="{ pointerEvents: hosting ? 'auto' : 'none' }"
           @click.stop.prevent
           @contextmenu.stop.prevent
           @wheel.stop.prevent="onWheel"
@@ -36,7 +37,11 @@
       <ul v-if="!fullscreen && !hideControls" class="video-menu top">
         <li><i @click.stop.prevent="requestFullscreen" class="fas fa-expand"></i></li>
         <li v-if="admin"><i @click.stop.prevent="openResolution" class="fas fa-desktop"></i></li>
+<<<<<<< HEAD
         <li v-if="!implicitHosting" :class="extraControls || 'extra-control'">
+=======
+        <li v-if="!controlLocked && !implicitHosting" :class="extraControls || 'extra-control'">
+>>>>>>> e26e4d2004b2c68afda93f9761e41894b5b48657
           <i
             :class="[hosted && !hosting ? 'disabled' : '', !hosted && !hosting ? 'faded' : '', 'fas', 'fa-keyboard']"
             @click.stop.prevent="toggleControl"

@@ -94,7 +94,7 @@ services:
 +     NEKO_IPFETCH: https://ifconfig.co/ip
 ```
 
-Or you can specify your IP address manually using `NEKO_NAT1TO1`:
+Or you can specify your IP address manually using `NEKO_NAT1TO1`: (It's read as NAT 1 to 1, so it's capital letter 'O', not zero '0', in NAT1`TO`1)
 
 ```diff
 version: "3.4"
@@ -129,6 +129,10 @@ Example for pfsense with truecharts docker container:
 - Test externally to confirm it works.
 - Internally you have to access it using `<your-public-ip>:port`
 
+<<<<<<< HEAD
+=======
+If your router does not support NAT Loopback (NAT Hairpinning), you can use turn servers to overcome this issue. See [more details here](https://neko.m1k1o.net/#/getting-started/?id=networking) on how to setup local coturn instance.
+>>>>>>> e26e4d2004b2c68afda93f9761e41894b5b48657
 
 ### Neko works locally, but not externally
 

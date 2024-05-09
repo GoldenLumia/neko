@@ -7,7 +7,11 @@ on:
 
 env:
   REGISTRY: ghcr.io
+<<<<<<< HEAD
   IMAGE_NAME: goldenlumia/neko
+=======
+  IMAGE_NAME: m1k1o/neko
+>>>>>>> e26e4d2004b2c68afda93f9761e41894b5b48657
   TAG_PREFIX: ""
   BASE_DOCKERFILE: Dockerfile
   PLATFORMS: linux/amd64
