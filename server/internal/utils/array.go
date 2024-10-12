@@ -1,13 +1,22 @@
 package utils
 
-func ArrayIn[T comparable](val T, array []T) (exists bool, index int) {
+import (
+	"reflect"
+)
+
+func ArrayIn(val interface{}, array interface{}) (exists bool, index int) {
+	exists = false
 	index = -1
 
-	for i, v := range array {
-		if v == val {
-			index = i
-			exists = true
-			return
+	switch reflect.TypeOf(array).Kind() {
+	case reflect.Slice:
+		s := reflect.ValueOf(array)
+		for i := 0; i < s.Len(); i++ {
+			if reflect.DeepEqual(val, s.Index(i).Interface()) {
+				index = i
+				exists = true
+				return
+			}
 		}
 	}
 

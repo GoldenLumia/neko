@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: m1k1o/neko
+  IMAGE_NAME: goldenlumia/neko
   TAG_PREFIX: arm-
   BASE_DOCKERFILE: Dockerfile.arm
   PLATFORMS: linux/arm64,linux/arm/v7
@@ -18,7 +18,7 @@ jobs:
     #
     # do not run on forks
     #
-    if: github.repository_owner == 'm1k1o'
+    if: github.repository_owner == 'goldenlumia'
     steps:
       -
         name: Checkout
@@ -46,7 +46,7 @@ jobs:
     #
     # do not run on forks
     #
-    if: github.repository_owner == 'm1k1o'
+    if: github.repository_owner == 'goldenlumia'
     needs: [ build-client ]
     steps:
       -
@@ -98,7 +98,7 @@ jobs:
     #
     # do not run on forks
     #
-    if: github.repository_owner == 'm1k1o'
+    if: github.repository_owner == 'goldenlumia'
     needs: [ build-base ]
     strategy:
       # Will build all images even if some fail.

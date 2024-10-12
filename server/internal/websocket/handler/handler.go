@@ -148,15 +148,15 @@ func (h *MessageHandler) Message(id string, raw []byte) error {
 				return h.screenSet(id, session, payload)
 			}), "%s failed", header.Event)
 
-	// Broadcast Events
-	case event.BROADCAST_CREATE:
+	// Boradcast Events
+	case event.BORADCAST_CREATE:
 		payload := &message.BroadcastCreate{}
 		return errors.Wrapf(
 			utils.Unmarshal(payload, raw, func() error {
-				return h.broadcastCreate(session, payload)
+				return h.boradcastCreate(session, payload)
 			}), "%s failed", header.Event)
-	case event.BROADCAST_DESTROY:
-		return errors.Wrapf(h.broadcastDestroy(session), "%s failed", header.Event)
+	case event.BORADCAST_DESTROY:
+		return errors.Wrapf(h.boradcastDestroy(session), "%s failed", header.Event)
 
 	// Admin Events
 	case event.ADMIN_LOCK:

@@ -17,7 +17,7 @@ func (h *MessageHandler) chat(id string, session types.Session, payload *message
 			Content: payload.Content,
 			ID:      id,
 		}, nil); err != nil {
-		h.logger.Warn().Err(err).Msgf("broadcasting event %s has failed", event.CHAT_MESSAGE)
+		h.logger.Warn().Err(err).Msgf("broadcasting event %s has failed", event.CONTROL_RELEASE)
 		return err
 	}
 	return nil
@@ -34,7 +34,7 @@ func (h *MessageHandler) chatEmote(id string, session types.Session, payload *me
 			Emote: payload.Emote,
 			ID:    id,
 		}, nil); err != nil {
-		h.logger.Warn().Err(err).Msgf("broadcasting event %s has failed", event.CHAT_EMOTE)
+		h.logger.Warn().Err(err).Msgf("broadcasting event %s has failed", event.CONTROL_RELEASE)
 		return err
 	}
 	return nil
