@@ -4,15 +4,18 @@ Neko UI loads, but you don't see the screen, and it gives you `connection timeou
 
 ## Test your client
 
-Some browser may block WebRTC access by default. You can check if it is enabled by going to `about:webrtc` or `chrome://webrtc-internals` in your browser.
+Some browsers may block WebRTC access by default. You can check if it is enabled by going to `about:webrtc` or `chrome://webrtc-internals` in your browser.
 
-Check if your extensions are not blocking WebRTC access. For example, Privacy Badger or Private Internet Access blocks WebRTC by default.
+Check if your extensions are not blocking WebRTC access. Following extensions are known to block or does not work properly with WebRTC:
+- Privacy Badger
+- Private Internet Access
+- PIA VPN (even if disabled)
 
 Test whether your client [supports](https://www.webrtc-experiment.com/DetectRTC/) and can [connect to WebRTC](https://www.webcasts.com/webrtc/).
 
 ## Networking
 
-Most problems are networking related.
+If you are absolutely sure, that your client is working correctly, then most likely your networking is not set up correctly.
 
 ### Check if your ports are correctly exposed using docker
 
@@ -59,6 +62,13 @@ Then try to type on one end, you should see characters on the other side.
 
 If it does not work for you, then most likely your port forwarding is not working correctly. Or your ISP is blocking traffic.
 
+
+If you get [`Command 'nc' not found.`](https://command-not-found.com/nc) error, you can install `netcat` package using:
+
+```shell
+sudo apt-get install netcat
+```
+
 ### Check if your external IP was determined correctly
 
 One of the first logs, when the server starts, writes down your external IP that will be sent to your clients to connect to.
@@ -66,6 +76,8 @@ One of the first logs, when the server starts, writes down your external IP that
 ```shell
 docker-compose logs neko | grep nat_ips
 ```
+
+Note: Some newer versions of docker-compose use `docker compose` instead of `docker-compose`.
 
 You should see this:
 
