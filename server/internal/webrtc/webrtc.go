@@ -16,9 +16,9 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 
-	"m1k1o/neko/internal/config"
-	"m1k1o/neko/internal/types"
-	"m1k1o/neko/internal/webrtc/pionlog"
+	"goldenlumia/neko/internal/config"
+	"goldenlumia/neko/internal/types"
+	"goldenlumia/neko/internal/webrtc/pionlog"
 )
 
 func New(sessions types.SessionManager, capture types.CaptureManager, desktop types.DesktopManager, config *config.WebRTC) *WebRTCManager {

@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=m1k1o/neko:base
+ARG BASE_IMAGE=goldenlumia/neko:base
 FROM $BASE_IMAGE
 
 ARG API_URL="https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/"

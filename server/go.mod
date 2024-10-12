@@ -1,4 +1,4 @@
-module m1k1o/neko
+module goldenlumia/neko
 
 go 1.20
 

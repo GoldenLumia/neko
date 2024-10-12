@@ -1,9 +1,9 @@
 package session
 
 import (
-	"m1k1o/neko/internal/types"
-	"m1k1o/neko/internal/types/event"
-	"m1k1o/neko/internal/types/message"
+	"goldenlumia/neko/internal/types"
+	"goldenlumia/neko/internal/types/event"
+	"goldenlumia/neko/internal/types/message"
 
 	"github.com/rs/zerolog"
 )

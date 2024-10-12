@@ -13,13 +13,13 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 
-	"m1k1o/neko/internal/config"
-	"m1k1o/neko/internal/types"
-	"m1k1o/neko/internal/types/event"
-	"m1k1o/neko/internal/types/message"
-	"m1k1o/neko/internal/utils"
-	"m1k1o/neko/internal/websocket/handler"
-	"m1k1o/neko/internal/websocket/state"
+	"goldenlumia/neko/internal/config"
+	"goldenlumia/neko/internal/types"
+	"goldenlumia/neko/internal/types/event"
+	"goldenlumia/neko/internal/types/message"
+	"goldenlumia/neko/internal/utils"
+	"goldenlumia/neko/internal/websocket/handler"
+	"goldenlumia/neko/internal/websocket/state"
 )
 
 const CONTROL_PROTECTION_SESSION = "by_control_protection"

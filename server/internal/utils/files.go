@@ -3,7 +3,7 @@ package utils
 import (
 	"os"
 
-	"m1k1o/neko/internal/types"
+	"goldenlumia/neko/internal/types"
 )
 
 func ListFiles(path string) ([]types.FileListItem, error) {

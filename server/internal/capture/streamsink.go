@@ -7,9 +7,9 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 
-	"m1k1o/neko/internal/capture/gst"
-	"m1k1o/neko/internal/types"
-	"m1k1o/neko/internal/types/codec"
+	"goldenlumia/neko/internal/capture/gst"
+	"goldenlumia/neko/internal/types"
+	"goldenlumia/neko/internal/types/codec"
 )
 
 type StreamSinkManagerCtx struct {

@@ -3,9 +3,9 @@ package handler
 import (
 	"strings"
 
-	"m1k1o/neko/internal/types"
-	"m1k1o/neko/internal/types/event"
-	"m1k1o/neko/internal/types/message"
+	"goldenlumia/neko/internal/types"
+	"goldenlumia/neko/internal/types/event"
+	"goldenlumia/neko/internal/types/message"
 )
 
 func (h *MessageHandler) adminLock(id string, session types.Session, payload *message.AdminLock) error {

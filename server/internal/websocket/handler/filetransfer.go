@@ -1,10 +1,10 @@
 package handler
 
 import (
-	"m1k1o/neko/internal/types"
-	"m1k1o/neko/internal/types/event"
-	"m1k1o/neko/internal/types/message"
-	"m1k1o/neko/internal/utils"
+	"goldenlumia/neko/internal/types"
+	"goldenlumia/neko/internal/types/event"
+	"goldenlumia/neko/internal/types/message"
+	"goldenlumia/neko/internal/utils"
 )
 
 func (h *MessageHandler) FileTransferRefresh(session types.Session) error {

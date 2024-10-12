@@ -3,7 +3,7 @@ package types
 import (
 	"errors"
 
-	"m1k1o/neko/internal/types/codec"
+	"goldenlumia/neko/internal/types/codec"
 )
 
 var (

@@ -15,7 +15,7 @@ import (
 	"time"
 	"unsafe"
 
-	"m1k1o/neko/internal/types"
+	"goldenlumia/neko/internal/types"
 )
 
 //go:generate ./keysymdef.sh

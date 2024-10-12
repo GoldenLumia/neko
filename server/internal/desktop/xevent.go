@@ -1,8 +1,8 @@
 package desktop
 
 import (
-	"m1k1o/neko/internal/desktop/xevent"
-	"m1k1o/neko/internal/types"
+	"goldenlumia/neko/internal/desktop/xevent"
+	"goldenlumia/neko/internal/types"
 )
 
 func (manager *DesktopManagerCtx) GetCursorChangedChannel() chan uint64 {

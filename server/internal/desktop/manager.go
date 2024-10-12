@@ -5,9 +5,9 @@ import (
 	"sync"
 	"time"
 
-	"m1k1o/neko/internal/config"
-	"m1k1o/neko/internal/desktop/xevent"
-	"m1k1o/neko/internal/desktop/xorg"
+	"goldenlumia/neko/internal/config"
+	"goldenlumia/neko/internal/desktop/xevent"
+	"goldenlumia/neko/internal/desktop/xorg"
 
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"

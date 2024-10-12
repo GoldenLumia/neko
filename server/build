@@ -27,9 +27,9 @@ go build \
     -o bin/neko \
     -ldflags "
         -s -w
-        -X 'm1k1o/neko.buildDate=${BUILD_TIME}'
-        -X 'm1k1o/neko.gitCommit=${GIT_COMMIT}'
-        -X 'm1k1o/neko.gitBranch=${GIT_BRANCH}'
-        -X 'm1k1o/neko.gitTag=${GIT_TAG}'
+        -X 'goldenlumia/neko.buildDate=${BUILD_TIME}'
+        -X 'goldenlumia/neko.gitCommit=${GIT_COMMIT}'
+        -X 'goldenlumia/neko.gitBranch=${GIT_BRANCH}'
+        -X 'goldenlumia/neko.gitTag=${GIT_TAG}'
     " \
     cmd/neko/main.go;

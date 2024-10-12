@@ -5,9 +5,9 @@ import (
 
 	"github.com/rs/zerolog/log"
 
-	"m1k1o/neko"
-	"m1k1o/neko/cmd"
-	"m1k1o/neko/internal/utils"
+	"goldenlumia/neko"
+	"goldenlumia/neko/cmd"
+	"goldenlumia/neko/internal/utils"
 )
 
 func main() {

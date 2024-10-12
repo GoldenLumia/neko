@@ -1,7 +1,7 @@
 package config
 
 import (
-	"m1k1o/neko/internal/types/codec"
+	"goldenlumia/neko/internal/types/codec"
 	"strings"
 
 	"github.com/pion/webrtc/v3"

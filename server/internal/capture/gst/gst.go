@@ -16,7 +16,7 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 
-	"m1k1o/neko/internal/types"
+	"goldenlumia/neko/internal/types"
 )
 
 type Pipeline struct {

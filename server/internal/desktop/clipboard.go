@@ -1,6 +1,6 @@
 package desktop
 
-import "m1k1o/neko/internal/desktop/clipboard"
+import "goldenlumia/neko/internal/desktop/clipboard"
 
 func (manager *DesktopManagerCtx) ReadClipboard() string {
 	return clipboard.Read()

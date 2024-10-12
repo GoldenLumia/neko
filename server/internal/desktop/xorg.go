@@ -6,8 +6,8 @@ import (
 	"regexp"
 	"time"
 
-	"m1k1o/neko/internal/desktop/xorg"
-	"m1k1o/neko/internal/types"
+	"goldenlumia/neko/internal/desktop/xorg"
+	"goldenlumia/neko/internal/types"
 )
 
 func (manager *DesktopManagerCtx) Move(x, y int) {

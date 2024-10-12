@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strings"
 
-	"m1k1o/neko/internal/capture/gst"
-	"m1k1o/neko/internal/config"
-	"m1k1o/neko/internal/types/codec"
+	"goldenlumia/neko/internal/capture/gst"
+	"goldenlumia/neko/internal/config"
+	"goldenlumia/neko/internal/types/codec"
 )
 
 /*

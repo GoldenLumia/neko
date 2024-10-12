@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"m1k1o/neko/internal/utils"
+	"goldenlumia/neko/internal/utils"
 
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"

@@ -14,7 +14,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	"m1k1o/neko"
+	"goldenlumia/neko"
 )
 
 func Execute() error {

@@ -7,8 +7,8 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 
-	"m1k1o/neko/internal/types"
-	"m1k1o/neko/internal/utils"
+	"goldenlumia/neko/internal/types"
+	"goldenlumia/neko/internal/utils"
 )
 
 func New(capture types.CaptureManager) *SessionManager {

@@ -7,13 +7,13 @@ import (
 	"runtime"
 	"strings"
 
-	"m1k1o/neko/internal/capture"
-	"m1k1o/neko/internal/config"
-	"m1k1o/neko/internal/desktop"
-	"m1k1o/neko/internal/http"
-	"m1k1o/neko/internal/session"
-	"m1k1o/neko/internal/webrtc"
-	"m1k1o/neko/internal/websocket"
+	"goldenlumia/neko/internal/capture"
+	"goldenlumia/neko/internal/config"
+	"goldenlumia/neko/internal/desktop"
+	"goldenlumia/neko/internal/http"
+	"goldenlumia/neko/internal/session"
+	"goldenlumia/neko/internal/webrtc"
+	"goldenlumia/neko/internal/websocket"
 
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -26,7 +26,7 @@ const Header = `&34
   /  |/ / _ \/ //_/ __ \   )  ( ')
  / /|  /  __/ ,< / /_/ /  (  /  )
 /_/ |_/\___/_/|_|\____/    \(__)|
-&1&37  nurdism/m1k1o &33%s %s&0
+&1&37  nurdism/goldenlumia &33%s %s&0
 `
 
 var (
